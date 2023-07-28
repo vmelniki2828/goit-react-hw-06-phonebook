@@ -11,7 +11,6 @@ const ContactForm = () => {
     const handleSubmit = evt => {
         evt.preventDefault();
         const form = evt.target;
-        console.log(contacts.filter(cont => form.elements.name.value === cont.name).length)
         if(contacts.filter(cont => form.elements.name.value === cont.name).length === 0){
           dispatch(
             addContacts({

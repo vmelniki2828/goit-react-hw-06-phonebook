@@ -9,7 +9,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import { contactsReducer } from './contactsSlice';
 import { filterReducer } from './filterSlice';
 
@@ -20,7 +19,11 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: {
+    getItem: () => Promise.resolve(null),
+    setItem: () => Promise.resolve(),
+    removeItem: () => Promise.resolve(),
+  },
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
