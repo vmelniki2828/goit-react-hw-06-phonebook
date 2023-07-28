@@ -1,24 +1,29 @@
 import uniqid from 'uniqid';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from 'redux/contactsSlice';
 import styles from './ContactForm.module.css';
 
 const ContactForm = () => {
+
+  let contacts = useSelector(state => state.contacts);
   
   const dispatch = useDispatch();
     const handleSubmit = evt => {
         evt.preventDefault();
         const form = evt.target;
-        dispatch(
+        console.log(contacts.filter(cont => form.elements.name.value === cont.name).length)
+        if(contacts.filter(cont => form.elements.name.value === cont.name).length === 0){
+          dispatch(
             addContacts({
                 id: uniqid(),
                 name:form.elements.name.value,
                 number: form.elements.number.value,
             })
         );
+        
         form.reset();
     };
-
+  }
 
   return (
     <form className={styles.theForm} onSubmit={handleSubmit}>

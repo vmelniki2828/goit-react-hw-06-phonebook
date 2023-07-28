@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename="/goit-react-hw-06-phonebook">
-      <Provider store={store}>
+      <Provider store={store} >
         <App />
       </Provider>
     </BrowserRouter>
