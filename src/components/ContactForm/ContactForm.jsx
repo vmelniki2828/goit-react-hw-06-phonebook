@@ -2,6 +2,7 @@ import uniqid from 'uniqid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from 'redux/contactsSlice';
 import styles from './ContactForm.module.css';
+import Notiflix from 'notiflix';
 
 const ContactForm = () => {
 
@@ -19,9 +20,13 @@ const ContactForm = () => {
                 number: form.elements.number.value,
             })
         );
-        
+      }else{
+        Notiflix.Notify.failure(
+          'Sorry, this contact already added!'
+        );
+      }
         form.reset();
-    };
+
   }
 
   return (
